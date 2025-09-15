@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Targetime — Tier 3 Packages</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif"]
+          },
+          colors: {
+            baseDark: '#0b0f14',
+            baseDarker: '#11161d',
+            neon: '#00FF85',
+            neona: '#00FFC5',
+            violet: '#9c6bff'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+  :root{ --bg-a:#08130f; --bg-b:#0b1f18; --bg-c:#0e3026; --neon:#00FF85; --neona:#00FFC5; }
+  body{
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif;
+    background:
+      radial-gradient(820px 620px at 15% 25%, rgba(255, 215, 0, 0.14), transparent 80%),
+      radial-gradient(900px 700px at 85% 75%, rgba(255, 215, 0, 0.06), transparent 85%),
+      linear-gradient(140deg, var(--bg-a), var(--bg-b) 45%, var(--bg-c));
+    overflow-x:hidden; position:relative; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"
+  }
+  @keyframes gradientFlow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+  body::before{ content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background: radial-gradient(1200px 800px at 80% -10%, rgba(0,255,133,.16), transparent 60%),
+                linear-gradient(140deg, var(--bg-a), var(--bg-b) 45%, var(--bg-c));
+    background-size:400% 400%; animation:gradientFlow 18s ease infinite;
+  }
+  @keyframes grainShift { 0%{transform:translate(0,0);opacity:.15} 50%{transform:translate(-10px,5px);opacity:.22} 100%{transform:translate(10px,-5px);opacity:.15} }
+  body::after{ content:""; position:fixed; inset:0; pointer-events:none; z-index:1; mix-blend:overlay; filter:blur(1px); opacity:.18;
+    background-image:url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 48 48%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%2248%22 height=%2248%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');
+    background-size:48px 48px; animation:grainShift 6s ease-in-out infinite alternate;
+  }
+  main{ position:relative; z-index:2; }
+  .grad-heading{ font-weight:800; background-image:linear-gradient(90deg,#ffffff 0%,#c8f9e7 30%,var(--neon) 60%,#62ffd0 100%); background-clip:text; -webkit-background-clip:text; }
+  @supports (-webkit-background-clip:text){ .grad-heading{ color:transparent; -webkit-text-fill-color:transparent; } }
+  main section h2{ margin-bottom:2.5rem; font-family:inherit; font-size:2.25rem; line-height:2.5rem; font-weight:800; letter-spacing:-0.015em; }
+  .price-row{ display:flex; justify-content:space-between; align-items:center; margin-top:.45rem }
+  .price-label{ font-size:.9rem; color:#cfeee2; font-weight:500 }
+  .price-value{ font-weight:700; letter-spacing:-0.01em }
+  .price-value.one{ font-size:1.5rem; color:var(--neon) }
+  .price-value.month{ font-size:1.2rem }
+  .neon-card{ position:relative; border:2px solid var(--borderColor, rgba(0,255,133,.28)); border-radius:16px; background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:0 10px 40px rgba(0,0,0,.35); font-family:inherit; }
+  .pkg-card{ min-height:700px; display:flex; flex-direction:column; justify-content:flex-start; font-family:inherit; }
+  .feature-list{ margin-top:1rem; display:grid; grid-template-columns:1fr; gap:.75rem; list-style:none; padding-left:0; font-size:.875rem; line-height:1.25rem; color:rgba(255,255,255,.8) }
+  .feature-list li{ border:1px solid rgba(0,255,133,.25); border-radius:12px; padding:.7rem .8rem; background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); box-shadow:inset 0 0 22px rgba(0,255,133,.08); font-weight:500; }
+  @property --angle { syntax: '<angle>'; inherits:false; initial-value:0deg }
+  @keyframes borderSpin { to { --angle:360deg } }
+  .pkg-card::before{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:2px; background: conic-gradient(from var(--angle), var(--streakColor, #00FF85) 0deg, rgba(255,255,255,0.7) 8deg, transparent 50deg, transparent 360deg); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; animation:borderSpin 5.5s linear infinite; filter: drop-shadow(0 0 4px var(--streakColor)) drop-shadow(0 0 8px var(--streakColor)); opacity:.8; z-index:1; }
+  section .grid > .pkg-card:nth-child(1){ --streakColor:#00FF85; --borderColor:#00FF85; }
+  section .grid > .pkg-card:nth-child(2){ --streakColor:#3b82f6; --borderColor:#3b82f6; }
+  section .grid > .pkg-card:nth-child(3){ --streakColor:#a855f7; --borderColor:#a855f7; }
+  section .grid > .pkg-card:nth-child(2)::after{ content:"Best Seller"; position:absolute; top:12px; right:12px; font-size:.72rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(34,197,94,.18); color:#d1fae5 }
+  section .grid > .pkg-card:nth-child(3)::after{ content:"Recommended"; position:absolute; top:12px; right:12px; font-size:.72rem; padding:.35rem .6rem; border-radius:999px; border:1px solid rgba(255,255,255,.18); background:rgba(156,107,255,.18); color:#ede9fe }
+  .pkg-card h3{ font-size:1.75rem; line-height:1.25; font-weight:700; letter-spacing:-0.01em; }
+  @media(min-width:1024px){ .pkg-card h3{ font-size:1.95rem } }
+  </style>
+</head>
+<body class="min-h-screen text-white font-sans">
+  <header class="sticky top-0 z-40 bg-baseDark/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center gap-4">
+      <img src="https://framerusercontent.com/images/0Wv5hQVMLzh3f9CWZ4UtLjPjZU.png?scale-down-to=512" alt="Targetime Logo" class="h-10 w-10 rounded-lg" />
+      <div class="leading-tight">
+        <div class="text-xl font-semibold tracking-tight">Target Time</div>
+        <div class="text-[11px] uppercase tracking-[.2em] text-white/60">AI Services</div>
+      </div>
+      <div class="ml-6">
+        <span class="px-5 py-2 rounded-full border border-neona/40 bg-white/5 text-sm font-medium">Packages</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-10 space-y-24">
+    <!-- Example Service with corrected fonts -->
+    <section>
+      <h2 class="grad-heading">Website Development</h2>
+      <div class="grid md:grid-cols-3 gap-8 mt-10">
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Starter</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 8,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 900</span></div>
+          <ul class="feature-list">
+            <li>5 responsive pages (Home, About, Services, Contact, Blog)</li>
+            <li>Basic UI design with brand colors</li>
+            <li>Contact form with email notifications</li>
+            <li>Core analytics (Google Analytics)</li>
+            <li>SSL certificate & basic hosting setup</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Pro</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 12,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 900</span></div>
+          <ul class="feature-list">
+            <li>8-page site with advanced UI design</li>
+            <li>Automated blog with AI draft generation</li>
+            <li>Basic funnel (landing + thank-you)</li>
+            <li>Manual property listing module</li>
+            <li>Advanced analytics and heatmaps</li>
+            <li>Performance tuned hosting</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Elite</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 40,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 900</span></div>
+          <ul class="feature-list">
+            <li>12+ pages with premium animations</li>
+            <li>Advanced funnel with multi-step A/B testing</li>
+            <li>Property listings with filters & search</li>
+            <li>AI-based SEO optimization</li>
+            <li>Dedicated hosting environment</li>
+            <li>Custom animations and micro-interactions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Repeat other services with same font + style -->
+      
+    <!-- WhatsApp & Instagram Chatbot -->
+    <section>
+      <h2 class="text-4xl grad-heading mb-10">WhatsApp & Instagram Chatbot</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Starter</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 4,500</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 500</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>Basic FAQ automation</li>
+            <li>Up to 300 conversations / month</li>
+            <li>Lead capture (name, phone, intent, budget)</li>
+            <li>Manual handover to human agent</li>
+            <li>Basic analytics dashboard</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Pro</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 7,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 500</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>Advanced FAQ flows with lead scoring</li>
+            <li>Up to 600 conversations / month</li>
+            <li>Booking handover with calendar sync</li>
+            <li>CRM integration with tags and notes</li>
+            <li>Conversion tracking</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Elite</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 10,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 600</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>Multilingual NLP intents</li>
+            <li>Up to 1200 conversations / month</li>
+            <li>Priority SLA support</li>
+            <li>Custom flows with webhook automations</li>
+            <li>Advanced CRM field mapping</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Content Automation -->
+    <section>
+      <h2 class="text-4xl grad-heading mb-10">AI Content Automation</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Starter</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 9,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 600</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>Up to 8 short-form videos / month</li>
+            <li>Captions & thumbnail templates</li>
+            <li>Auto-posting to IG/TikTok/FB/LinkedIn</li>
+            <li>Monthly performance snapshot</li>
+            <li>Asset library setup</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Pro</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 11,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 600</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>Up to 12 videos / month</li>
+            <li>Brand overlays & subtitles</li>
+            <li>Topic ideation + script guidance</li>
+            <li>Weekly content calendar</li>
+            <li>Basic UGC adaptation</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Elite</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 21,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 700</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>Up to 20 videos / month</li>
+            <li>Concept & script refinement</li>
+            <li>Cross-platform scheduling & QA</li>
+            <li>Bi-weekly strategy calls</li>
+            <li>Campaign-level reporting</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Voice Caller -->
+    <section>
+      <h2 class="text-4xl grad-heading mb-10">AI Voice Caller</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Starter</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 15,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 700</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>200 call minutes / month</li>
+            <li>Basic IVR & callback flows</li>
+            <li>CRM logging (notes & status)</li>
+            <li>Call recordings access</li>
+            <li>Standard dispositions</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Pro</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 20,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 700</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>400 call minutes / month</li>
+            <li>Custom flows per lead source</li>
+            <li>Summaries & analytics dashboard</li>
+            <li>Warm transfer to agents</li>
+            <li>Priority bug fixes</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Elite</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 28,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 800</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>800 call minutes / month</li>
+            <li>Advanced flows & dispositions</li>
+            <li>Custom SLA & priority routing</li>
+            <li>Executive reporting pack</li>
+            <li>Quarterly optimization</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Email Automation -->
+    <section>
+      <h2 class="text-4xl grad-heading mb-10">AI Email Automation</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Starter</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 3,500</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 500</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>3 sequences (welcome, retarget, re‑engage)</li>
+            <li>Up to 1,500 emails / month</li>
+            <li>Basic lead scoring & tags</li>
+            <li>Monthly deliverability check</li>
+            <li>Template & brand setup</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Pro</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 4,500</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 500</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>5 sequences + retargeting branches</li>
+            <li>Up to 2,500 emails / month</li>
+            <li>Dynamic scoring & segments</li>
+            <li>Monthly performance report</li>
+            <li>Event-based automations</li>
+          </ul>
+        </div>
+        <div class="neon-card pkg-card rounded-2xl p-6">
+          <h3 class="text-xl font-semibold mb-2 tracking-tight">Elite</h3>
+          <div class="price-row"><span class="price-label">One-Time Price</span><span class="price-value one">AED 7,000</span></div>
+          <div class="price-row"><span class="price-label">Monthly</span><span class="price-value month">AED 600</span></div>
+          <ul class="feature-list text-white/80 text-sm">
+            <li>8 sequences + dynamic content</li>
+            <li>Up to 3,500 emails / month</li>
+            <li>Advanced segmentation & testing</li>
+            <li>Weekly executive report</li>
+            <li>Deliverability optimization</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-4 pb-12 text-center text-white/40 text-xs">© <span id="year"></span> Targetime AI Services L.L.C.</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
